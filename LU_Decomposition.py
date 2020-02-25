@@ -3,9 +3,10 @@ import numpy as np
 def main():
    dim = 3
    A = np.random.rand(dim, dim)
-
-   print("A: \n", A)
-   L, U = decompose(A)
+   B = np.array([[4, 1, 7, 9], [1, 6, 3, 1], [4, 8, 9, 9], [12, 6, 1, 9]], np.float64)
+   # print("A: \n", A)
+   print("B: \n", B)
+   L, U = decompose(B)
    print("\nL: \n", L, "\nU: \n", U)
    print("\nL*U: \n", np.dot(L, U))
 
