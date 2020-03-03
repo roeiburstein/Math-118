@@ -3,7 +3,7 @@ import time
 MAX_FIB_INDEX = 501 # Used for array with -1's for top-down dp
 
 def main():
-    testing([10, 20, 30])
+    testing([10, 20, 30, 35])
 
 # Generic fibonacci recursive function: order O(n^2)
 def fib_bf(index):
