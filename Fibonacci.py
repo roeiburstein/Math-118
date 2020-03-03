@@ -1,4 +1,3 @@
-import numpy as np
 import time
 
 MAX_FIB_INDEX = 100
