@@ -1,15 +1,7 @@
 import numpy as np
 
 def main():
-   # test_1()
-   # test_2()
-   A = np.array([[2, 4, -4],
-                 [1, -4, 3],
-                 [-6, -9, 10]], np.float64)
-
-   b = np.array([12, -21, -24])
-
-   linear_system(A, b)
+   test_1()
 
 def decompose(matrix):
    dim = len(matrix)
@@ -31,37 +23,37 @@ def decompose(matrix):
 
 
 def linear_system(A, b):
-   L, U = decompose(A)
-   y = np.zeros(len(A), np.float)
+   L, U = decompose(A) #LU = A -> LUx = b
+   y = np.zeros(len(A), np.float) # We will build y such that Ly = b
 
    for row in range(len(A)):
       sum = b[row]
       for col in range(len(A)):
-         if col != row:
+         if(col != row):
             sum -= L[row][col] * y[col]
       y[row] = sum
 
-   x = np.zeros(len(A), np.float)
+   x = np.zeros(len(A), np.float) # We will build x such that Ux = y
 
-   #LUx=b
-   #Ly=b
-   #Ux=y
+   for row in range(len(A) - 1, -1, -1):
+      sum = y[row]
+      for col in range(len(A)):
+         if(col != row):
+            sum -= U[row][col] * x[col]
+         else:
+            divisor = U[row][col]
+      x[row] = sum / divisor
+
+   return x
 
 def test_1():
-   dim = 3
-   A = np.random.rand(dim, dim)
-   print("A: \n", A)
-   L, U = decompose(A)
-   print("\nL: \n", L, "\nU: \n", U)
-   print("\nL*U: \n", np.dot(L, U))
+   A = np.array([[2, 4, -4],
+                 [1, -4, 3],
+                 [-6, -9, 10]], np.float64)
 
-def test_2():
-   B = np.array([[4, 1, 7, 9], [1, 6, 3, 1], [4, 8, 9, 9], [12, 6, 1, 9]],
-                np.float64)
-   print("B: \n", B)
-   L, U = decompose(B)
-   print("\nL: \n", L, "\nU: \n", U)
-   print("\nL*U: \n", np.dot(L, U))
+   b = np.array([12, -21, -24])
+
+   print(linear_system(A, b)) # Expected: x = [-4, 2, -3]
 
 if __name__ == "__main__":
     main()
