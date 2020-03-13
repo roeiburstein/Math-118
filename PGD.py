@@ -20,8 +20,6 @@ def main():
    print("x_2: ", x_2)
    print("x_3: ", x_3)
 
-
-
 def x_k_plus_one(x_k):
    return P_x(x_k - a * grad_f(x_k))
 
